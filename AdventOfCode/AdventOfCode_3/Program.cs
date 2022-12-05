@@ -34,4 +34,42 @@
     Console.WriteLine($"Total priority is {totalPriority}");
 }
 
+void Day3_Task2()
+{
+    int totalPriority = 0;
+    List<char> badgeItems = new List<char>();
+
+    string[] lines = File.ReadAllLines("../../../input.txt");
+    for (int i = 0; i < lines.Length; i = i + 3)
+    {
+        char[] backpack1 = lines[i].ToCharArray();
+        char[] backpack2 = lines[i + 1].ToCharArray();
+        char[] backpack3 = lines[i + 2].ToCharArray();
+
+        foreach (char item in backpack1)
+        {
+            if (backpack1.Contains(item) && backpack2.Contains(item) && backpack3.Contains(item))
+            {
+                badgeItems.Add(item);
+                break;
+            }
+        }
+    }
+
+    foreach (char item in badgeItems)
+    {
+        if (item > 64 && item < 91)
+        {
+            totalPriority += (item - 38);
+        }
+        else
+        {
+            totalPriority += (item - 96);
+        }
+    }
+
+    Console.WriteLine($"Total priority is {totalPriority}");
+}
+
 Day3_Task1();
+Day3_Task2();
